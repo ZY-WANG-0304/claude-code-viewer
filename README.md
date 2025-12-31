@@ -1,6 +1,23 @@
-# Claude Code Viewer
+<div align="center">
+    <img src="./img/logo.png" alt="Claude Code Viewer Logo"/>
+</div>
 
-Claude Code Viewer 是一个用于本地查看、分析和管理 Claude Code 交互日志的工具。它提供了一个现代化的 Web 界面，帮助开发者回顾与 Claude 的对话历史，分析 Token 使用情况，并对会话进行分类管理。
+
+<p align="center">
+    <p>Claude Code Viewer 是一个用于本地查看、分析和管理 Claude Code 交互日志的工具。它提供了一个现代化的 Web 界面，帮助开发者回顾与 Claude 的对话历史，分析 Token 使用情况，并对会话进行分类管理。</p>
+</p>
+
+<p align="center">
+    <a href="./README.md">简体中文</a> | <a href="./README_EN.md">English</a> | <a href="./README_JP.md">日本語</a>
+</p>
+
+<p align="center">
+    <!-- <a href="https://github.com/CasterWx/claude-code-viewer/actions/workflows/release.yml"><img src="https://github.com/CasterWx/claude-code-viewer/actions/workflows/release.yml/badge.svg" alt="Release"/></a> -->
+    <a href="https://github.com/CasterWx/claude-code-viewer/stargazers"><img src="https://img.shields.io/github/stars/CasterWx/claude-code-viewer?style=social" alt="GitHub stars"/></a>
+    <a href="https://github.com/CasterWx/claude-code-viewer/blob/main/LICENSE"><img src="https://img.shields.io/github/license/CasterWx/claude-code-viewer" alt="License"/></a>
+    <a href="https://CasterWx.github.io/spec-kit/"><img src="https://img.shields.io/badge/docs-GitHub_Pages-blue" alt="Documentation"/></a>
+</p>
+
 
 ## ✨ 功能特性
 
@@ -11,6 +28,12 @@ Claude Code Viewer 是一个用于本地查看、分析和管理 Claude Code 交
 - **🏷️ 标签管理**：支持为会话添加自定义标签，便于分类和筛选。
 - **⚙️ 灵活配置**：支持自定义日志扫描路径。
 - **📦 一体化部署**：支持将前端资源打包进 Python 包，无需单独运行前端服务。
+
+
+
+<div align="center">
+    <img src="./img/chat_message_p1.png" alt="Chat Message" width="70%"/>
+</div>
 
 ## 🛠️ 技术栈
 
