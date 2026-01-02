@@ -68,6 +68,7 @@ claude-viewer serve
 
 ```bash
 # 1. Wheelパッケージをダウンロード
+https://github.com/CasterWx/claude-code-viewer/releases/tag/v0.1.0
 
 # 2. パッケージをインストール
 pip install claude_viewer-0.1.0-py3-none-any.whl

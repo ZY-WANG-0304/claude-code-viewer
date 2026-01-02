@@ -48,7 +48,7 @@
 
 我们提供了多种安装方式，推荐使用一体化安装包。
 
-### 方式一：源码安装
+### 方式一：源码安装 (推荐)
 
 ```bash
 # 1. 克隆仓库
@@ -65,7 +65,8 @@ claude-viewer serve
 ### 方式二：资源包安装
 
 ```bash
-# 1. 下载资源包
+# 1. 下载whl资源包
+https://github.com/CasterWx/claude-code-viewer/releases/tag/v0.1.0
 
 # 2. 安装资源包
 pip install claude_viewer-0.1.0-py3-none-any.whl

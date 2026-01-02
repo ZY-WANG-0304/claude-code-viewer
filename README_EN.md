@@ -69,6 +69,7 @@ After starting, access `http://127.0.0.1:8000` to use the full functionality.
 
 ```bash
 # 1. Download the wheel package
+https://github.com/CasterWx/claude-code-viewer/releases/tag/v0.1.0
 
 # 2. Install the package
 pip install claude_viewer-0.1.0-py3-none-any.whl
