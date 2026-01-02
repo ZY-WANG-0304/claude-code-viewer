@@ -3,8 +3,10 @@ import { api } from '../api';
 import type { AnalyticsData } from '../types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 import { Activity, MessageSquare, Zap, Clock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const Analytics: React.FC = () => {
+    const { t } = useTranslation();
     const [data, setData] = useState<AnalyticsData | null>(null);
 
     useEffect(() => {
@@ -14,37 +16,37 @@ export const Analytics: React.FC = () => {
     if (!data) return (
         <div className="flex-1 flex flex-col items-center justify-center text-gray-400 bg-white h-full">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mb-4"></div>
-            <span className="text-sm">Loading insights...</span>
+            <span className="text-sm">{t('analytics.loading')}</span>
         </div>
     );
 
     return (
         <div className="p-8 font-sans bg-[#f9f9fb] min-h-full overflow-y-auto">
             <div className="max-w-6xl mx-auto">
-                <h2 className="text-2xl font-bold mb-1 text-gray-900">Performance Insights</h2>
-                <p className="text-gray-500 mb-8 text-sm">Overview of your coding sessions and efficiency.</p>
+                <h2 className="text-2xl font-bold mb-1 text-gray-900">{t('analytics.title')}</h2>
+                <p className="text-gray-500 mb-8 text-sm">{t('analytics.subtitle')}</p>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
                     <StatCard
-                        label="Total Projects"
+                        label={t('analytics.total_projects')}
                         value={data.total_projects}
                         icon={<FolderIcon />}
                         color="bg-blue-50 text-blue-600"
                     />
                     <StatCard
-                        label="Total Sessions"
+                        label={t('analytics.total_sessions')}
                         value={data.total_sessions}
                         icon={<MessageSquare size={20} />}
                         color="bg-purple-50 text-purple-600"
                     />
                     <StatCard
-                        label="Total Interactions"
+                        label={t('analytics.total_interactions')}
                         value={data.total_messages}
                         icon={<Activity size={20} />}
                         color="bg-green-50 text-green-600"
                     />
                     <StatCard
-                        label="Avg Msgs/Session"
+                        label={t('analytics.avg_msgs_session')}
                         value={data.total_sessions ? Math.round(data.total_messages / data.total_sessions) : 0}
                         icon={<Zap size={20} />}
                         color="bg-orange-50 text-orange-600"
@@ -54,7 +56,7 @@ export const Analytics: React.FC = () => {
                 {data.tag_stats && data.tag_stats.length > 0 && (
                     <div className="mb-8">
                         <h3 className="text-sm font-semibold mb-6 text-gray-800 flex items-center gap-2">
-                            <Activity className="w-4 h-4 text-gray-400" /> Efficiency by Tag
+                            <Activity className="w-4 h-4 text-gray-400" /> {t('analytics.efficiency_by_tag')}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {data.tag_stats.map((tag) => (
@@ -82,7 +84,7 @@ export const Analytics: React.FC = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                     <div className="bg-white p-6 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-gray-100 h-80">
                         <h3 className="text-sm font-semibold mb-6 text-gray-800 flex items-center gap-2">
-                            <Activity className="w-4 h-4 text-gray-400" /> Daily Activity
+                            <Activity className="w-4 h-4 text-gray-400" /> {t('analytics.daily_activity')}
                         </h3>
                         <ResponsiveContainer width="100%" height="80%">
                             <BarChart data={data.daily_activity}>
@@ -100,7 +102,7 @@ export const Analytics: React.FC = () => {
 
                     <div className="bg-white p-6 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-gray-100 h-80">
                         <h3 className="text-sm font-semibold mb-6 text-gray-800 flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-gray-400" /> Usage Trend
+                            <Clock className="w-4 h-4 text-gray-400" /> {t('analytics.usage_trend')}
                         </h3>
                         <ResponsiveContainer width="100%" height="80%">
                             <LineChart data={data.daily_activity}>

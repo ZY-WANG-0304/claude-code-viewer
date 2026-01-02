@@ -7,6 +7,7 @@ import { formatDateTime } from '../utils/formatDateTime';
 import { FileChangeModal } from './FileChangeModal';
 import { SessionStatsModal } from './SessionStatsModal';
 import { OneShotDetailsModal } from './OneShotDetailsModal';
+import { useTranslation } from 'react-i18next';
 
 interface ProjectDetailsProps {
     projectName: string;
@@ -23,6 +24,7 @@ interface OneShotStats {
 }
 
 export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) => {
+    const { t } = useTranslation();
     const [details, setDetails] = useState<ProjectDetailsType | null>(null);
     const [sessions, setSessions] = useState<Session[]>([]);
     const [loading, setLoading] = useState(true);
@@ -124,8 +126,8 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
     if (error || !details) {
         return (
             <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-white">
-                <div className="text-primary-red font-bold text-xl mb-2">Error Loading Project</div>
-                <div className="text-gray-600">{error || "Project not found"}</div>
+                <div className="text-primary-red font-bold text-xl mb-2">{t('project.error_loading')}</div>
+                <div className="text-gray-600">{error || t('project.not_found')}</div>
             </div>
         );
     }
@@ -142,7 +144,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
                     <h1 className="text-4xl font-black mb-2 uppercase tracking-tight">{details.name}</h1>
                     <div className="flex items-center text-gray-600 font-mono text-sm bg-gray-100 p-2 border-2 border-black inline-block">
                         <Folder size={16} className="mr-2" />
-                        {details.path || "Path not available"}
+                        {details.path || t('project.path_unavailable')}
                     </div>
                 </div>
 
@@ -156,20 +158,20 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="text-xl font-bold uppercase flex items-center gap-2">
                                 <GitBranch className="text-primary-red" />
-                                Git Status
+                                {t('project.git_status')}
                             </h2>
                             {details.git.is_repo && (
                                 <span className="bg-primary-red text-white text-xs font-bold px-2 py-1 rounded-sm border-2 border-black">
-                                    ACTIVE
+                                    {t('project.active')}
                                 </span>
                             )}
                         </div>
                         {details.git.is_repo ? (
                             <div className="font-mono text-lg font-bold">
-                                On branch <span className="text-primary-blue">{details.git.branch}</span>
+                                {t('project.on_branch')} <span className="text-primary-blue">{details.git.branch}</span>
                             </div>
                         ) : (
-                            <div className="text-gray-500 italic">Not a git repository</div>
+                            <div className="text-gray-500 italic">{t('project.not_repo')}</div>
                         )}
                     </div>
 
@@ -177,27 +179,27 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
                     <div className="bg-white border-4 border-black shadow-hard-md p-6">
                         <h2 className="text-xl font-bold uppercase flex items-center gap-2 mb-4">
                             <Activity className="text-primary-yellow" />
-                            Activity Overview
+                            {t('project.activity_overview')}
                         </h2>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <div className="text-gray-500 text-xs font-bold uppercase">Sessions</div>
+                                <div className="text-gray-500 text-xs font-bold uppercase">{t('project.sessions')}</div>
                                 <div className="text-2xl font-black flex items-center gap-2">
                                     <MessageSquare size={20} className="text-gray-400" />
                                     {details.stats.sessions}
                                 </div>
                             </div>
                             <div>
-                                <div className="text-gray-500 text-xs font-bold uppercase">Tokens</div>
+                                <div className="text-gray-500 text-xs font-bold uppercase">{t('project.tokens')}</div>
                                 <div className="text-2xl font-black flex items-center gap-2">
                                     <Database size={20} className="text-gray-400" />
                                     {(details.stats.tokens / 1000).toFixed(1)}k
                                 </div>
                             </div>
                             <div className="col-span-2">
-                                <div className="text-gray-500 text-xs font-bold uppercase">Last Active</div>
+                                <div className="text-gray-500 text-xs font-bold uppercase">{t('project.last_active')}</div>
                                 <div className="font-mono text-sm border-t-2 border-dashed border-gray-200 pt-1 mt-1">
-                                    {details.stats.last_active ? new Date(details.stats.last_active).toLocaleString() : 'Never'}
+                                    {details.stats.last_active ? new Date(details.stats.last_active).toLocaleString() : t('project.never')}
                                 </div>
                             </div>
                         </div>
@@ -208,7 +210,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
                 <div className="bg-white border-4 border-black shadow-hard-md p-6">
                     <h2 className="text-xl font-bold uppercase flex items-center gap-2 mb-4">
                         <FileCode className="text-primary-blue" />
-                        Configuration Files
+                        {t('project.config_files')}
                     </h2>
                     {details.configs.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -226,7 +228,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
                         </div>
                     ) : (
                         <div className="text-gray-500 italic p-4 text-center border-2 border-dashed border-gray-300">
-                            No .claude configuration files found
+                            {t('project.no_configs')}
                         </div>
                     )}
                 </div>
@@ -235,7 +237,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
                 <div className="bg-white border-4 border-black shadow-hard-md p-6">
                     <h2 className="text-xl font-bold uppercase flex items-center gap-2 mb-4">
                         <MessageSquare className="text-primary-red" />
-                        Session History
+                        {t('project.session_history')}
                     </h2>
 
                     {sessions.length > 0 ? (
@@ -243,14 +245,14 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
                             <table className="w-full text-left border-collapse">
                                 <thead>
                                     <tr className="border-b-4 border-black bg-gray-50">
-                                        <th className="p-3 text-left">Session ID</th>
-                                        <th className="p-3 text-left">Started</th>
-                                        <th className="p-3 text-left">Model</th>
-                                        <th className="p-3 text-right">Turns</th>
-                                        <th className="p-3 text-right">Tokens (I/O)</th>
-                                        <th className="p-3 text-right">Files Changed</th>
-                                        <th className="p-3 text-center w-32">Code Survival</th>
-                                        <th className="p-3 text-center">Activity</th>
+                                        <th className="p-3 text-left">{t('project.col_session_id')}</th>
+                                        <th className="p-3 text-left">{t('project.col_started')}</th>
+                                        <th className="p-3 text-left">{t('project.col_model')}</th>
+                                        <th className="p-3 text-right">{t('project.col_turns')}</th>
+                                        <th className="p-3 text-right">{t('project.col_tokens')}</th>
+                                        <th className="p-3 text-right">{t('project.col_files_changed')}</th>
+                                        <th className="p-3 text-center w-32">{t('project.col_code_survival')}</th>
+                                        <th className="p-3 text-center">{t('project.col_activity')}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -311,7 +313,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
                                                             {isLoadingStats ? (
                                                                 <div className="flex items-center gap-1 text-[9px] text-gray-400 font-mono animate-pulse">
                                                                     <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-                                                                    Running...
+                                                                    {t('project.running')}
                                                                 </div>
                                                             ) : stats ? (
                                                                 <div
@@ -337,7 +339,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
                                                                     onClick={() => loadOneShotStats(session.id)}
                                                                     className="text-[9px] font-bold bg-white border border-black px-1.5 py-0.5 hover:bg-black hover:text-white transition-colors opacity-50 hover:opacity-100"
                                                                 >
-                                                                    RETRY
+                                                                    {t('project.retry')}
                                                                 </button>
                                                             )}
                                                         </div>
@@ -352,7 +354,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
                                                             setStatsModalOpen(true);
                                                         }}
                                                         className="p-1 hover:bg-black hover:text-white transition-colors rounded-sm text-gray-400 hover:text-white"
-                                                        title="View Analytics"
+                                                        title={t('project.view_analytics')}
                                                     >
                                                         <Activity size={14} />
                                                     </button>
@@ -365,7 +367,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectName }) =
                         </div>
                     ) : (
                         <div className="text-gray-500 italic p-8 text-center border-2 border-dashed border-gray-300 bg-gray-50">
-                            No sessions found for this project.
+                            {t('project.no_sessions')}
                         </div>
                     )}
                 </div>

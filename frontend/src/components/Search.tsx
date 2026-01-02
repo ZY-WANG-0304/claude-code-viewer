@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { api } from '../api';
 import type { SearchResult } from '../types';
 import { Search as SearchIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface SearchProps {
     onResultClick: (projectId: string, sessionId: string) => void;
 }
 
 export const Search: React.FC<SearchProps> = ({ onResultClick }) => {
+    const { t } = useTranslation();
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<SearchResult[]>([]);
     const [searching, setSearching] = useState(false);
@@ -31,7 +33,7 @@ export const Search: React.FC<SearchProps> = ({ onResultClick }) => {
                     <div className="w-10 h-10 bg-primary-red text-white flex items-center justify-center border-2 border-black shadow-hard-sm">
                         <SearchIcon strokeWidth={3} className="w-5 h-5" />
                     </div>
-                    搜索 (Search)
+                    {t('search.title')}
                 </h1>
                 <form onSubmit={handleSearch} className="flex gap-4">
                     <div className="flex-1 max-w-4xl relative">
@@ -39,7 +41,7 @@ export const Search: React.FC<SearchProps> = ({ onResultClick }) => {
                             type="text"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            placeholder="搜索日志内容..."
+                            placeholder={t('search.placeholder')}
                             className="w-full px-6 py-4 border-4 border-black text-lg font-bold placeholder-gray-400 focus:outline-none focus:shadow-hard-md transition-all bg-white"
                         />
                         <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none font-mono text-xs">
@@ -56,7 +58,7 @@ export const Search: React.FC<SearchProps> = ({ onResultClick }) => {
                         ) : (
                             <>
                                 <SearchIcon strokeWidth={3} size={20} />
-                                搜索
+                                {t('search.search_button')}
                             </>
                         )}
                     </button>
@@ -85,8 +87,8 @@ export const Search: React.FC<SearchProps> = ({ onResultClick }) => {
 
                 {results.length === 0 && !searching && query && (
                     <div className="text-center py-20 border-4 border-black bg-white border-dashed">
-                        <div className="text-6xl mb-4">rawr!</div>
-                        <div className="text-xl font-bold text-gray-500">未找到相关结果</div>
+                        <div className="text-6xl mb-4">{t('search.rawr')}</div>
+                        <div className="text-xl font-bold text-gray-500">{t('search.no_results')}</div>
                     </div>
                 )}
 
@@ -94,7 +96,7 @@ export const Search: React.FC<SearchProps> = ({ onResultClick }) => {
                     <div className="text-center py-20">
                         <div className="inline-block p-8 border-4 border-black bg-primary-yellow shadow-hard-lg rotate-3 transition-transform hover:rotate-6">
                             <SearchIcon size={48} className="text-black mb-2 mx-auto" strokeWidth={2.5} />
-                            <div className="font-black text-xl uppercase">Start Typing to Search</div>
+                            <div className="font-black text-xl uppercase">{t('search.start_typing')}</div>
                         </div>
                     </div>
                 )}

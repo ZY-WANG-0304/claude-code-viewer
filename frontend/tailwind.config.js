@@ -13,6 +13,7 @@ export default {
                     red: '#D02020',
                     blue: '#1040C0',
                     yellow: '#F0C020',
+                    green: '#00A040',
                 },
                 github: {
                     0: '#ebedf0',

@@ -9,8 +9,10 @@ import type { Session, Message, Project } from './types';
 import { LayoutDashboard, Search as SearchIcon, Settings as SettingsIcon, Folder } from 'lucide-react';
 import { Dashboard } from './components/Dashboard';
 import { Settings } from './components/Settings';
+import { useTranslation } from 'react-i18next';
 
 function AppContent() {
+  const { t } = useTranslation();
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -79,7 +81,7 @@ function AppContent() {
               ? 'bg-primary-yellow text-black shadow-[4px_4px_0px_0px_white] translate-x-[-2px] translate-y-[-2px]'
               : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:border-white'}
           `}
-          title="仪表盘"
+          title={t('sidebar.dashboard')}
         >
           <LayoutDashboard size={24} strokeWidth={2.5} />
         </button>
@@ -91,7 +93,7 @@ function AppContent() {
               ? 'bg-primary-blue text-white shadow-[4px_4px_0px_0px_white] translate-x-[-2px] translate-y-[-2px]'
               : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:border-white'}
           `}
-          title="项目与会话"
+          title={t('sidebar.chat')}
         >
           <Folder size={24} strokeWidth={2.5} />
         </button>
@@ -103,7 +105,7 @@ function AppContent() {
               ? 'bg-primary-red text-white shadow-[4px_4px_0px_0px_white] translate-x-[-2px] translate-y-[-2px]'
               : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:border-white'}
           `}
-          title="搜索"
+          title={t('sidebar.search')}
         >
           <SearchIcon size={24} strokeWidth={2.5} />
         </button>
@@ -116,7 +118,7 @@ function AppContent() {
               ? 'bg-white text-black shadow-[4px_4px_0px_0px_#F0C020] translate-x-[-2px] translate-y-[-2px]'
               : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:border-white'}
           `}
-          title="设置"
+          title={t('sidebar.settings')}
         >
           <SettingsIcon size={24} strokeWidth={2.5} />
         </button>

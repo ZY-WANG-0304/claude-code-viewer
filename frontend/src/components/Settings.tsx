@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../api';
-import { Settings as SettingsIcon, FileText, Users, Terminal, Save, RefreshCw } from 'lucide-react';
+import { Settings as SettingsIcon, FileText, Users, Terminal, Save, RefreshCw, Languages } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface ConfigFile {
     name: string;
@@ -48,9 +49,9 @@ export const Settings: React.FC = () => {
         try {
             await api.updateConfig(selectedFile, content);
             setHasChanges(false);
-            alert('Saved successfully!');
+            alert(t('settings.saved_success'));
         } catch (error) {
-            alert('Error saving: ' + error);
+            alert(t('settings.saved_error') + error);
         }
         setSaving(false);
     };
@@ -58,6 +59,12 @@ export const Settings: React.FC = () => {
     const handleContentChange = (newContent: string) => {
         setContent(newContent);
         setHasChanges(true);
+    };
+
+    const { t, i18n } = useTranslation();
+
+    const changeLanguage = (lng: string) => {
+        i18n.changeLanguage(lng);
     };
 
     const renderFileList = (files: ConfigFile[]) => (
@@ -94,7 +101,7 @@ export const Settings: React.FC = () => {
                     <div className="w-10 h-10 bg-black text-white flex items-center justify-center shadow-hard-sm">
                         <SettingsIcon strokeWidth={3} className="w-5 h-5" />
                     </div>
-                    设置 (Settings)
+                    {t('settings.title')}
                 </h1>
             </div>
 
@@ -112,7 +119,7 @@ export const Settings: React.FC = () => {
                             `}
                         >
                             <FileText className="w-5 h-5" strokeWidth={2.5} />
-                            全局配置
+                            {t('settings.global_config')}
                         </button>
                         <button
                             onClick={() => { setActiveTab('agents'); setSelectedFile(null); }}
@@ -124,7 +131,7 @@ export const Settings: React.FC = () => {
                             `}
                         >
                             <Users className="w-5 h-5" strokeWidth={2.5} />
-                            智能体 (Agents)
+                            {t('settings.agents')}
                         </button>
                         <button
                             onClick={() => { setActiveTab('commands'); setSelectedFile(null); }}
@@ -136,7 +143,7 @@ export const Settings: React.FC = () => {
                             `}
                         >
                             <Terminal className="w-5 h-5" strokeWidth={2.5} />
-                            指令 (Commands)
+                            {t('settings.commands')}
                         </button>
                         <button
                             onClick={() => { setActiveTab('claude'); setSelectedFile(null); }}
@@ -148,14 +155,40 @@ export const Settings: React.FC = () => {
                             `}
                         >
                             <FileText className="w-5 h-5" strokeWidth={2.5} />
-                            全局指令 (CLAUDE.md)
+                            {t('settings.global_commands')}
                         </button>
+
+                        <div className="my-4 border-t-2 border-black/10"></div>
+
+                        {/* Language Selector */}
+                        <div className="border-2 border-black bg-white p-3 shadow-hard-sm">
+                            <h3 className="text-xs font-black uppercase tracking-widest mb-3 text-gray-500 flex items-center gap-2">
+                                <Languages className="w-3 h-3" />
+                                {t('settings.language')}
+                            </h3>
+                            <div className="grid grid-cols-3 gap-1">
+                                {['zh', 'en', 'ja'].map((lang) => (
+                                    <button
+                                        key={lang}
+                                        onClick={() => changeLanguage(lang)}
+                                        className={`
+                                            px-2 py-1 text-xs font-bold border-2 border-black transition-all
+                                            ${i18n.language.startsWith(lang)
+                                                ? 'bg-black text-white'
+                                                : 'bg-white hover:bg-gray-100'}
+                                        `}
+                                    >
+                                        {lang === 'zh' ? '中' : lang === 'en' ? 'EN' : '日'}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
                     {/* File List */}
                     {configs && (
                         <div className="mt-8 border-t-4 border-black pt-6">
-                            <h3 className="text-xs font-black uppercase tracking-widest mb-4 text-gray-500 px-1">Configs List</h3>
+                            <h3 className="text-xs font-black uppercase tracking-widest mb-4 text-gray-500 px-1">{t('settings.configs_list')}</h3>
                             {activeTab === 'settings' && renderFileList(configs.files.filter(f => f.name === 'settings.json'))}
                             {activeTab === 'agents' && configs.directories.agents && renderFileList(configs.directories.agents)}
                             {activeTab === 'commands' && configs.directories.commands && renderFileList(configs.directories.commands)}
@@ -173,7 +206,7 @@ export const Settings: React.FC = () => {
                                     <span className="text-lg font-bold font-mono text-black">{selectedFile}</span>
                                     {hasChanges && (
                                         <span className="bg-primary-red text-white text-xs font-bold px-2 py-1 border-2 border-black shadow-hard-sm">
-                                            ● 未保存
+                                            ● {t('settings.unsaved')}
                                         </span>
                                     )}
                                 </div>
@@ -184,7 +217,7 @@ export const Settings: React.FC = () => {
                                         disabled={saving}
                                     >
                                         <RefreshCw className="w-4 h-4" />
-                                        重载
+                                        {t('settings.reload')}
                                     </button>
                                     <button
                                         onClick={saveFile}
@@ -192,7 +225,7 @@ export const Settings: React.FC = () => {
                                         className="px-6 py-2 border-2 border-black bg-primary-green text-white font-bold text-sm shadow-hard-sm hover:-translate-y-0.5 hover:shadow-hard-md active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                                     >
                                         <Save className="w-4 h-4" />
-                                        {saving ? '保存中...' : '保存'}
+                                        {saving ? t('settings.saving') : t('settings.save')}
                                     </button>
                                 </div>
                             </div>
@@ -209,7 +242,7 @@ export const Settings: React.FC = () => {
                         <div className="flex-1 flex items-center justify-center text-gray-400 bg-dots">
                             <div className="text-center p-8 border-4 border-black bg-white shadow-hard-lg">
                                 <FileText className="w-16 h-16 mx-auto mb-4 text-black" strokeWidth={1.5} />
-                                <p className="font-bold text-xl text-black">请选择文件进行编辑</p>
+                                <p className="font-bold text-xl text-black">{t('settings.select_file')}</p>
                                 <p className="text-sm text-gray-500 mt-2">Select a file to edit</p>
                             </div>
                         </div>

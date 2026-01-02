@@ -1,133 +1,98 @@
 <div align="center">
-    <img src="./img/logo.png" alt="Claude Code Viewer Logo"/>
+    <img src="./img/logo.png" alt="Claude Code Viewer Logo" />
 </div>
 
+<div align="center">
+    <strong>本地 Claude Code 交互日志可视化查看与分析工具</strong>
+</div>
 
-<p align="center">
-    <p>Claude Code Viewer 是一个用于本地查看、分析和管理 Claude Code 交互日志的工具。它提供了一个现代化的 Web 界面，帮助开发者回顾与 Claude 的对话历史，分析 Token 使用情况，并对会话进行分类管理。</p>
-</p>
+<br/>
 
 <p align="center">
     <a href="./README.md">简体中文</a> | <a href="./README_EN.md">English</a> | <a href="./README_JP.md">日本語</a>
 </p>
 
 <p align="center">
-    <!-- <a href="https://github.com/CasterWx/claude-code-viewer/actions/workflows/release.yml"><img src="https://github.com/CasterWx/claude-code-viewer/actions/workflows/release.yml/badge.svg" alt="Release"/></a> -->
-    <a href="https://github.com/CasterWx/claude-code-viewer/stargazers"><img src="https://img.shields.io/github/stars/CasterWx/claude-code-viewer?style=social" alt="GitHub stars"/></a>
-    <a href="https://github.com/CasterWx/claude-code-viewer/blob/main/LICENSE"><img src="https://img.shields.io/github/license/CasterWx/claude-code-viewer" alt="License"/></a>
-    <a href="https://CasterWx.github.io/spec-kit/"><img src="https://img.shields.io/badge/docs-GitHub_Pages-blue" alt="Documentation"/></a>
+    <a href="LICENSE"><img src="https://img.shields.io/github/license/CasterWx/claude-code-viewer?style=flat-square" alt="License"></a>
+    <a href="https://github.com/CasterWx/claude-code-viewer/stargazers"><img src="https://img.shields.io/github/stars/CasterWx/claude-code-viewer?style=flat-square" alt="Stars"></a>
+    <a href="https://github.com/CasterWx/claude-code-viewer/issues"><img src="https://img.shields.io/github/issues/CasterWx/claude-code-viewer?style=flat-square" alt="Issues"></a>
+    <img src="https://img.shields.io/badge/python-3.8+-blue?style=flat-square" alt="Python">
+    <img src="https://img.shields.io/badge/react-19-blue?style=flat-square" alt="React">
 </p>
 
+<br/>
 
-## ✨ 功能特性
+## 📖 简介
 
-- **👀 可视化日志查看**：以聊天界面的形式还原 Claude Code 的交互过程，支持 Markdown 渲染、代码高亮和工具调用展示。
-- **📂 多项目/会话管理**：自动扫描日志目录，按项目和会话组织日志文件。
-- **🔍 全文搜索**：快速搜索历史对话内容，定位关键信息。
-- **📊 数据仪表盘**：概览项目统计信息、Token 消耗趋势等。
-- **🏷️ 标签管理**：支持为会话添加自定义标签，便于分类和筛选。
-- **⚙️ 灵活配置**：支持自定义日志扫描路径。
-- **📦 一体化部署**：支持将前端资源打包进 Python 包，无需单独运行前端服务。
+**Claude Code Viewer** 是一款专为开发者设计的本地工具，旨在帮助用户更好地查看、分析和管理与 Claude Code 的交互历史。通过现代化的 Web 界面，它解决了单纯查看原始 Log 文件不直观、难以检索的问题，让你的 AI 结对编程过程更加透明、可追溯。
 
+## ✨ 核心特性
 
-
-<div align="center">
-    <img src="./img/chat_message_p1.png" alt="Chat Message" width="70%"/>
-</div>
+| 功能 | 描述 | 预览 |
+| :--- | :--- | :--- |
+| **📊 数据仪表盘** | 宏观视角查看 Token 消耗、会话频次、常用模型、活动频率等关键指标。 | <img src="./img/feature_dashboard.png" width="400" alt="Dashboard"/> |
+| **👀 项目级会话明细** | 从项目维度洞察会话明细，包括 Token 消耗，每次会话的模型、轮次、Token 消耗、AI 代码留存率、变更文件等。 | <img src="./img/feature_project.png" width="400" alt="Chat UI"/> |
+| **👀 会话变更文件明细** | 每次会话修改变更了哪些文件，辅助回顾变更历史。 | <img src="./img/feature_file_change.png" width="400" alt="Chat UI"/> |
+| **👀 代码留存率分析** | 分析 AI 生成代码在项目中的实际留存情况，评估 AI 贡献度。 | <img src="./img/feature_code_survival.png" width="400" alt="Chat UI"/> |
+| **🔍 全文检索** | 基于关键词快速定位历史会话，支持模糊搜索，不再丢失任何灵感。 | <img src="./img/feature_search.png" width="400" alt="Search"/> |
+| **📂 会话历史解析还原** | 对每次会话明细做了最大程度上的渲染还原，不同于其他工具的粗暴展示。 | <img src="./img/feature_chat.png" width="400" alt="Chat"/> |
+| **🌍 多语言支持** | 内置中、英、日三种语言界面，一键切换。 | <img src="./img/feature_i18n.png" width="400" alt="Internationalization"/> |
 
 ## 🛠️ 技术栈
 
-- **后端**：Python 3.8+, FastAPI, Uvicorn, Click
-- **前端**：React 19, TypeScript, Vite, Tailwind CSS, Recharts
+*   **Backend**: Python 3.8+, FastAPI, Uvicorn
+*   **Frontend**: React 19, TypeScript, Vite, Tailwind CSS
+*   **Visualization**: Recharts, Lucide React
 
-## 🚀 安装与运行
+## 🚀 快速开始
 
-### 方式一：一体化安装（推荐）
+我们提供了多种安装方式，推荐使用一体化安装包。
 
-你可以将前端构建结果打包进 Python 包中，这样只需要启动一个服务即可。
-
-1. **构建并安装**
-
-   我们提供了一个构建脚本，会自动构建前端资源并打包 Python 包：
-
-   ```bash
-   # 运行构建脚本
-   python build_package.py
-   
-   # 安装构建好的包 (在 dist/ 目录下)
-   pip install dist/claude_viewer-0.1.0-py3-none-any.whl
-   # 或者直接安装当前目录
-   pip install .
-   ```
-
-2. **启动服务**
-
-   ```bash
-   claude-viewer serve
-   ```
-
-   访问 `http://127.0.0.1:8000` 即可直接使用完整功能（无需单独启动前端）。
-
-### 方式二：开发模式
-
-如果你需要修改代码，可以分别启动前后端。
-
-#### 1. 后端服务
-
-后端负责解析日志文件并提供 API 接口。
+### 方式一：源码安装
 
 ```bash
-# 1. 在项目根目录下安装 Python 依赖
-pip install -e .
+# 1. 克隆仓库
+git clone https://github.com/CasterWx/claude-code-viewer.git
+cd claude-code-viewer
 
-# 2. 启动后端服务
-claude-viewer serve --host 127.0.0.1 --port 8000
+# 2. 构建并安装 (自动处理前端构建与 Python 包安装)
+python install_package.py
+
+# 3. 启动服务
+claude-viewer serve
 ```
 
-服务启动后，API 将运行在 `http://127.0.0.1:8000`。
-
-#### 2. 前端界面
-
-前端提供用户交互界面。
+### 方式二：资源包安装
 
 ```bash
-# 1. 进入前端目录
-cd frontend
+# 1. 下载资源包
 
-# 2. 安装依赖
-npm install
+# 2. 安装资源包
+pip install claude_viewer-0.1.0-py3-none-any.whl
 
-# 3. 启动开发服务器
-npm run dev
+# 3. 启动服务
+claude-viewer serve
 ```
 
-启动后，访问终端显示的地址（通常是 `http://localhost:5173`）即可使用。
+服务启动后，访问 `http://127.0.0.1:8000` 即可使用完整功能。
 
-## 📁 目录结构
-
-```
-claude-code-viewer/
-├── claude_viewer/      # Python 后端源码
-│   ├── main.py         # CLI 入口
-│   ├── server.py       # FastAPI 服务
-│   ├── parser.py       # 日志解析逻辑
-│   ├── static/         # 前端构建产物 (构建后生成)
-│   └── ...
-├── frontend/           # React 前端源码
-│   ├── src/
-│   │   ├── components/ # UI 组件
-│   │   ├── api.ts      # API 客户端
-│   │   └── ...
-│   └── ...
-├── pyproject.toml      # Python 项目配置
-├── build_package.py    # 构建脚本
-└── README.md           # 项目说明文档
-```
-
-## 📝 配置说明
-
-默认情况下，工具会尝试自动扫描常见的 Claude Code 日志路径。如果需要指定特定路径，可以在设置页面进行配置，或者通过环境变量 `CLAUDE_LOG_PATH` 指定。
 
 ## 🤝 贡献
 
-欢迎提交 Issue 和 Pull Request 来改进这个项目！
+欢迎提交 Issue 或 Pull Request！如果你有新的想法或发现了 Bug，请随时告诉我们。
+
+1.  Fork 本仓库
+2.  创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3.  提交改动 (`git commit -m 'Add some AmazingFeature'`)
+4.  推送到分支 (`git push origin feature/AmazingFeature`)
+5.  提交 Pull Request
+
+## 📄 许可证
+
+本项目基于 [MIT License](LICENSE) 开源。
+
+---
+
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/CasterWx">CasterWx</a>
+</p>

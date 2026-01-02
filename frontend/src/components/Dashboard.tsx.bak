@@ -4,10 +4,8 @@ import type { AnalyticsData } from '../types';
 import { MessageSquare, Folder, Activity, BarChart2, Database, Zap, Clock, PieChart, Tag as TagIcon, Camera } from 'lucide-react';
 import { formatDate } from '../utils/formatDate';
 import html2canvas from 'html2canvas';
-import { useTranslation } from 'react-i18next';
 
 export const Dashboard: React.FC = () => {
-    const { t } = useTranslation();
     const [data, setData] = useState<AnalyticsData & { avg_messages_per_session?: number } | null>(null);
     const [loading, setLoading] = useState(true);
     const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
@@ -148,17 +146,17 @@ export const Dashboard: React.FC = () => {
                         <div className="w-12 h-12 bg-primary-yellow text-black flex items-center justify-center border-4 border-black shadow-hard-lg">
                             <BarChart2 strokeWidth={3} className="w-6 h-6" />
                         </div>
-                        <span>{t('dashboard.title')}</span>
+                        <span>数据概览 (DASHBOARD)</span>
                     </h1>
                     <div className="flex items-center gap-6">
                         <div className="text-right hidden sm:block">
-                            <div className="text-xs font-bold uppercase tracking-widest text-gray-500">{t('dashboard.total_tokens')}</div>
+                            <div className="text-xs font-bold uppercase tracking-widest text-gray-500">Total Tokens</div>
                             <div className="text-2xl font-black text-black">{stats?.total_tokens.toLocaleString() || 0}</div>
                         </div>
                         <button
                             onClick={handleExport}
                             className="bg-black text-white p-3 border-4 border-transparent hover:bg-primary-yellow hover:text-black hover:border-black hover:shadow-hard-md transition-all active:translate-y-1 active:shadow-none"
-                            title={t('dashboard.export_image')}
+                            title="Export to Image"
                         >
                             <Camera strokeWidth={2.5} size={24} />
                         </button>
@@ -174,7 +172,7 @@ export const Dashboard: React.FC = () => {
                             </div>
                             <span className="text-4xl font-black">{stats?.total_projects}</span>
                         </div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('dashboard.total_projects')}</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-gray-500">项目总数 (Projects)</p>
                     </div>
                     <div className="bg-white p-6 border-4 border-black shadow-hard-md hover:-translate-y-1 hover:shadow-hard-lg transition-all">
                         <div className="flex justify-between items-start mb-4">
@@ -183,7 +181,7 @@ export const Dashboard: React.FC = () => {
                             </div>
                             <span className="text-4xl font-black">{stats?.total_sessions}</span>
                         </div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('dashboard.total_sessions')}</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-gray-500">会话总数 (Sessions)</p>
                     </div>
                     <div className="bg-white p-6 border-4 border-black shadow-hard-md hover:-translate-y-1 hover:shadow-hard-lg transition-all">
                         <div className="flex justify-between items-start mb-4">
@@ -192,7 +190,7 @@ export const Dashboard: React.FC = () => {
                             </div>
                             <span className="text-4xl font-black">{stats?.total_messages}</span>
                         </div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('dashboard.total_messages')}</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-gray-500">消息总数 (Messages)</p>
                     </div>
                     <div className="bg-white p-6 border-4 border-black shadow-hard-md hover:-translate-y-1 hover:shadow-hard-lg transition-all">
                         <div className="flex justify-between items-start mb-4">
@@ -201,7 +199,7 @@ export const Dashboard: React.FC = () => {
                             </div>
                             <span className="text-2xl font-black truncate max-w-[120px]" title={stats?.most_used_model}>{stats?.most_used_model || 'N/A'}</span>
                         </div>
-                        <p className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('dashboard.top_model')}</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-gray-500">常用模型 (Top Model)</p>
                     </div>
                 </div>
 
@@ -209,7 +207,7 @@ export const Dashboard: React.FC = () => {
                 <div className="bg-white p-8 border-4 border-black shadow-hard-lg overflow-x-auto">
                     <h2 className="text-xl font-black uppercase tracking-tight mb-6 flex items-center gap-2">
                         <Activity size={20} strokeWidth={3} />
-                        {t('dashboard.yearly_activity')}
+                        年度活动热力 (Yearly Activity)
                     </h2>
                     <div className="flex items-start gap-6">
                         <div className="min-w-max relative group/heatmap flex-1">
@@ -266,7 +264,7 @@ export const Dashboard: React.FC = () => {
                                                             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max hidden group-hover/cell:block z-50">
                                                                 <div className="bg-black text-white text-xs font-bold px-3 py-2 border-2 border-white shadow-hard-sm text-center">
                                                                     <div className="uppercase tracking-wider text-[10px] opacity-75">{formatDate(day.date.toISOString())}</div>
-                                                                    <div>{count} {t('dashboard.msgs')}</div>
+                                                                    <div>{count} messages</div>
                                                                 </div>
                                                                 <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-black mx-auto mt-[-2px]"></div>
                                                             </div>
@@ -279,13 +277,13 @@ export const Dashboard: React.FC = () => {
                                 </div>
                             </div>
                             <div className="flex justify-end items-center gap-2 mt-4 text-xs font-bold text-gray-400 uppercase">
-                                <span>{t('dashboard.less')}</span>
+                                <span>Less</span>
                                 <div className="w-3 h-3 bg-github-0"></div>
                                 <div className="w-3 h-3 bg-github-1"></div>
                                 <div className="w-3 h-3 bg-github-2"></div>
                                 <div className="w-3 h-3 bg-github-3"></div>
                                 <div className="w-3 h-3 bg-github-4"></div>
-                                <span>{t('dashboard.more')}</span>
+                                <span>More</span>
                             </div>
                         </div>
                         <div className="flex flex-col gap-1 pt-8 min-w-[50px] items-stretch">
@@ -312,7 +310,7 @@ export const Dashboard: React.FC = () => {
                     <div className="bg-white p-6 border-4 border-black shadow-hard-lg flex flex-col items-center">
                         <h2 className="text-xl font-black uppercase tracking-tight mb-6 flex items-center gap-2 w-full">
                             <Clock size={20} strokeWidth={3} />
-                            {t('dashboard.activity_clock')}
+                            24h 时钟 (Activity Clock)
                         </h2>
                         <div className="relative w-64 h-64 mb-4">
                             {/* Clock Face base */}
@@ -353,7 +351,7 @@ export const Dashboard: React.FC = () => {
                                         }}
                                     >
                                         <div className="hidden group-hover:block absolute z-50 bg-black text-white text-xs p-2 whitespace-nowrap shadow-hard-sm border-2 border-white bottom-full left-1/2 -translate-x-1/2 mb-1 pointer-events-none" style={{ transform: `rotate(${-hour.angle}deg)` }}>
-                                            <span className="font-mono font-bold text-primary-yellow">{hour.hour}:00</span> - {hour.count} {t('dashboard.msgs')}
+                                            <span className="font-mono font-bold text-primary-yellow">{hour.hour}:00</span> - {hour.count} msgs
                                         </div>
                                     </div>
                                 )
@@ -378,7 +376,7 @@ export const Dashboard: React.FC = () => {
                     <div className="bg-white p-6 border-4 border-black shadow-hard-lg flex flex-col items-center">
                         <h2 className="text-xl font-black uppercase tracking-tight mb-6 flex items-center gap-2 w-full">
                             <PieChart size={20} strokeWidth={3} />
-                            {t('dashboard.models')}
+                            模型分布 (Models)
                         </h2>
                         <div className="relative w-64 h-64">
                             <svg viewBox="-1 -1 2 2" className="w-full h-full -rotate-90">
@@ -435,7 +433,7 @@ export const Dashboard: React.FC = () => {
                     <div className="bg-white p-6 border-4 border-black shadow-hard-lg flex flex-col">
                         <h2 className="text-xl font-black uppercase tracking-tight mb-6 flex items-center gap-2 w-full">
                             <Activity size={20} strokeWidth={3} />
-                            {t('dashboard.weekly_rhythm')}
+                            每周节奏 (Weekly Rhythm)
                         </h2>
                         <div className="flex-1 flex items-end gap-2 min-h-[200px] border-b-4 border-black pb-0">
                             {weeklyStats.map((day) => (
@@ -450,7 +448,7 @@ export const Dashboard: React.FC = () => {
                                         style={{ height: `${Math.max(day.height, 4)}%` }}
                                     >
                                         <div className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 bg-black text-white text-xs py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap font-bold z-10 shadow-hard-sm">
-                                            {day.count} {t('dashboard.msgs')}
+                                            {day.count} msgs
                                         </div>
                                     </div>
                                     <div className="mt-2 text-xs font-bold uppercase">{day.day}</div>
@@ -464,7 +462,7 @@ export const Dashboard: React.FC = () => {
                 <div className="bg-white p-8 border-4 border-black shadow-hard-lg">
                     <h2 className="text-xl font-black uppercase tracking-tight mb-6 flex items-center gap-2">
                         <BarChart2 size={20} strokeWidth={3} />
-                        {t('dashboard.activity_trend')}
+                        近期活跃趋势 (Activity Trend)
                     </h2>
                     <div className="h-48 flex items-end gap-1 border-b-4 border-black pb-0 relative mt-10 mb-6">
                         {stats?.daily_activity.slice(0, 30).map((day, i) => (
@@ -481,10 +479,10 @@ export const Dashboard: React.FC = () => {
                                     {/* Info Inside Bar (Bottom Inside) */}
                                     <div className="flex flex-col gap-0.5 items-center justify-end w-full pb-1">
                                         <div className="text-[8px] font-bold text-gray-400 rotate-0 whitespace-nowrap leading-none scale-75 origin-bottom">
-                                            {t('dashboard.session')}:{day.sessions}
+                                            会话:{day.sessions}
                                         </div>
                                         <div className="text-[8px] font-bold text-gray-400 rotate-0 whitespace-nowrap leading-none scale-75 origin-bottom">
-                                            {t('dashboard.project')}:{day.projects}
+                                            项目:{day.projects}
                                         </div>
                                     </div>
                                 </div>
@@ -504,7 +502,7 @@ export const Dashboard: React.FC = () => {
                 <div className="bg-white p-6 border-4 border-black shadow-hard-lg">
                     <h2 className="text-xl font-black uppercase tracking-tight mb-6 flex items-center gap-2">
                         <TagIcon size={20} strokeWidth={3} />
-                        {t('dashboard.top_tags')}
+                        热门标签 (Top Tags)
                     </h2>
                     <div className="flex flex-wrap gap-2">
                         {stats?.tag_stats.map((tag) => (
@@ -518,7 +516,7 @@ export const Dashboard: React.FC = () => {
                             </div>
                         ))}
                         {(!stats?.tag_stats || stats.tag_stats.length === 0) && (
-                            <div className="text-gray-400 font-bold italic border-2 border-dashed border-gray-300 p-4 w-full text-center">{t('dashboard.no_tags')}</div>
+                            <div className="text-gray-400 font-bold italic border-2 border-dashed border-gray-300 p-4 w-full text-center">No tags yet</div>
                         )}
                     </div>
                 </div>
