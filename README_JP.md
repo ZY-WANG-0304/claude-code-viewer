@@ -1,132 +1,99 @@
 <div align="center">
-    <img src="./img/logo.png" alt="Claude Code Viewer Logo"/>
+    <img src="./img/logo.png" alt="Claude Code Viewer Logo" />
 </div>
 
+<div align="center">
+    <strong>ローカル Claude Code インタラクションログ可視化・分析ツール</strong>
+</div>
 
-<p align="center">
-    <p>Claude Code Viewerは、Claude Codeの対話ログをローカルで閲覧、分析、管理するためのツールです。Claudeとの会話履歴の振り返り、トークン使用量の分析、セッションの分類管理を支援するモダンなWebインターフェースを提供します。</p>
-</p>
+<br/>
 
 <p align="center">
     <a href="./README.md">简体中文</a> | <a href="./README_EN.md">English</a> | <a href="./README_JP.md">日本語</a>
 </p>
 
 <p align="center">
-    <!-- <a href="https://github.com/CasterWx/claude-code-viewer/actions/workflows/release.yml"><img src="https://github.com/CasterWx/claude-code-viewer/actions/workflows/release.yml/badge.svg" alt="Release"/></a> -->
-    <a href="https://github.com/CasterWx/claude-code-viewer/stargazers"><img src="https://img.shields.io/github/stars/CasterWx/claude-code-viewer?style=social" alt="GitHub stars"/></a>
-    <a href="https://github.com/CasterWx/claude-code-viewer/blob/main/LICENSE"><img src="https://img.shields.io/github/license/CasterWx/claude-code-viewer" alt="License"/></a>
-    <a href="https://CasterWx.github.io/spec-kit/"><img src="https://img.shields.io/badge/docs-GitHub_Pages-blue" alt="Documentation"/></a>
+    <a href="LICENSE"><img src="https://img.shields.io/github/license/CasterWx/claude-code-viewer?style=flat-square" alt="License"></a>
+    <a href="https://github.com/CasterWx/claude-code-viewer/stargazers"><img src="https://img.shields.io/github/stars/CasterWx/claude-code-viewer?style=flat-square" alt="Stars"></a>
+    <a href="https://github.com/CasterWx/claude-code-viewer/issues"><img src="https://img.shields.io/github/issues/CasterWx/claude-code-viewer?style=flat-square" alt="Issues"></a>
+    <img src="https://img.shields.io/badge/python-3.8+-blue?style=flat-square" alt="Python">
+    <img src="https://img.shields.io/badge/react-19-blue?style=flat-square" alt="React">
 </p>
 
+<br/>
+
+## 📖 はじめに
+
+**Claude Code Viewer** は、開発者が Claude Code との対話履歴をより効率的に閲覧、分析、管理するために設計されたローカルツールです。最新のWebインターフェースを通じて、生のログファイルが見づらく検索しにくいという問題を解決し、AIペアプログラミングのプロセスを透明で追跡可能なものにします。
 
 ## ✨ 機能と特徴
 
-- **👀 ログの可視化**: Claude Codeの対話プロセスをチャットインターフェースとして再現し、Markdownレンダリング、コードハイライト、ツール呼び出しの表示をサポートします。
-- **📂 マルチプロジェクト/セッション管理**: ログディレクトリを自動的にスキャンし、プロジェクトとセッションごとにログファイルを整理します。
-- **🔍 全文検索**: 過去の会話内容を素早く検索し、重要な情報を特定できます。
-- **📊 データダッシュボード**: プロジェクトの統計情報やトークン消費傾向などの概要を表示します。
-- **🏷️ タグ管理**: セッションにカスタムタグを追加して、分類やフィルタリングが可能です。
-- **⚙️ 柔軟な設定**: ログのスキャンパスをカスタマイズできます。
-- **📦 一体型デプロイ**: フロントエンドリソースをPythonパッケージに同梱できるため、フロントエンドサービスを個別に実行する必要がありません。
-
-
-<div align="center">
-    <img src="./img/chat_message_p1.png" alt="Chat Message" width="70%"/>
-</div>
+| 機能 | 説明 | プレビュー |
+| :--- | :--- | :--- |
+| **📊 データダッシュボード** | トークン消費量、セッション頻度、使用頻度の高いモデル、活動リズムなどの主要指標をマクロな視点で確認できます。 | <img src="./img/feature_dashboard.png" width="400" alt="Dashboard"/> |
+| **🚀 プロジェクト別セッション詳細** | トークン消費量、セッションごとのモデル、ターン数、AIコード生存率、変更ファイルなど、プロジェクトレベルでのセッション詳細を把握できます。 | <img src="./img/feature_project.png" width="400" alt="Chat UI"/> |
+| **👀 セッションファイル変更詳細** | 各セッションでどのファイルが変更されたかを詳細に表示し、変更履歴の振り返りを支援します。 | <img src="./img/feature_file_change.png" width="400" alt="Chat UI"/> |
+| **🧐 コード生存率分析** | AIが生成したコードがプロジェクト内で実際にどれだけ残存しているかを分析し、AIの貢献度を評価します。 | <img src="./img/feature_code_survival.png" width="400" alt="Chat UI"/> |
+| **🔍 全文検索** | キーワードに基づいて過去のセッションを素早く特定し、あいまい検索もサポートしているため、インスピレーションを逃しません。 | <img src="./img/feature_search.png" width="400" alt="Search"/> |
+| **📂 セッション履歴の解析と復元** | 他のツールの粗雑な表示とは異なり、各セッションの詳細を最大限にレンダリングして復元し、優れた体験を提供します。 | <img src="./img/feature_chat.png" width="400" alt="Chat"/> |
+| **🌍 多言語サポート** | 中国語、英語、日本語のインターフェースを内蔵しており、ワンクリックで切り替え可能です。 | <img src="./img/feature_i18n.png" width="400" alt="Internationalization"/> |
 
 ## 🛠️ 技術スタック
 
-- **バックエンド**: Python 3.8+, FastAPI, Uvicorn, Click
-- **フロントエンド**: React 19, TypeScript, Vite, Tailwind CSS, Recharts
+*   **Backend**: Python 3.8+, FastAPI, Uvicorn
+*   **Frontend**: React 19, TypeScript, Vite, Tailwind CSS
+*   **Visualization**: Recharts, Lucide React
 
 ## 🚀 インストールと実行
 
-### 方法1: 一体型インストール（推奨）
+複数のインストール方法を提供していますが、All-in-Oneパッケージ（推奨）が最も簡単です。
 
-フロントエンドのビルド結果をPythonパッケージに同梱できるため、1つのサービスを起動するだけで済みます。
-
-1. **ビルドとインストール**
-
-   フロントエンドリソースを自動的にビルドし、Pythonパッケージを作成するビルドスクリプトを提供しています：
-
-   ```bash
-   # ビルドスクリプトを実行
-   python build_package.py
-   
-   # ビルドされたパッケージをインストール (dist/ ディレクトリ内)
-   pip install dist/claude_viewer-0.1.0-py3-none-any.whl
-   # または現在のディレクトリから直接インストール
-   pip install .
-   ```
-
-2. **サービスの起動**
-
-   ```bash
-   claude-viewer serve
-   ```
-
-   `http://127.0.0.1:8000` にアクセスすると、完全な機能を直接使用できます（フロントエンドを個別に起動する必要はありません）。
-
-### 方法2: 開発モード
-
-コードを変更する必要がある場合は、バックエンドとフロントエンドを個別に起動できます。
-
-#### 1. バックエンドサービス
-
-バックエンドはログファイルを解析し、APIインターフェースを提供します。
+### 方法1: ソースコードからのインストール (推奨)
 
 ```bash
-# 1. プロジェクトルートディレクトリでPython依存関係をインストール
-pip install -e .
+# 1. リポジトリをクローン
+git clone https://github.com/CasterWx/claude-code-viewer.git
+cd claude-code-viewer
 
-# 2. バックエンドサービスを起動
-claude-viewer serve --host 127.0.0.1 --port 8000
+# 2. ビルドとインストール (フロントエンドのビルドとPythonパッケージのインストールを自動処理)
+python install_package.py
+
+# 3. サービスの起動
+claude-viewer serve
 ```
 
-サービス起動後、APIは `http://127.0.0.1:8000` で実行されます。
+起動後、 `http://127.0.0.1:8000` にアクセスすると、完全な機能を使用できます。
 
-#### 2. フロントエンドインターフェース
-
-フロントエンドはユーザー対話インターフェースを提供します。
+### 方法2: Wheelパッケージからのインストール
 
 ```bash
-# 1. フロントエンドディレクトリに移動
-cd frontend
+# 1. Wheelパッケージをダウンロード
 
-# 2. 依存関係をインストール
-npm install
+# 2. パッケージをインストール
+pip install claude_viewer-0.1.0-py3-none-any.whl
 
-# 3. 開発サーバーを起動
-npm run dev
+# 3. サービスの起動
+claude-viewer serve
 ```
 
-起動後、ターミナルに表示されるアドレス（通常は `http://localhost:5173`）にアクセスして使用します。
-
-## 📁 ディレクトリ構造
-
-```
-claude-code-viewer/
-├── claude_viewer/      # Python バックエンドソースコード
-│   ├── main.py         # CLI エントリーポイント
-│   ├── server.py       # FastAPI サービス
-│   ├── parser.py       # ログ解析ロジック
-│   ├── static/         # フロントエンドビルド成果物 (ビルド後に生成)
-│   └── ...
-├── frontend/           # React フロントエンドソースコード
-│   ├── src/
-│   │   ├── components/ # UI コンポーネント
-│   │   ├── api.ts      # API クライアント
-│   │   └── ...
-│   └── ...
-├── pyproject.toml      # Python プロジェクト設定
-├── build_package.py    # ビルドスクリプト
-└── README.md           # プロジェクト説明ドキュメント
-```
-
-## 📝 設定
-
-デフォルトでは、ツールは一般的なClaude Codeログパスを自動的にスキャンしようとします。特定のパスを指定する必要がある場合は、設定ページで構成するか、環境変数 `CLAUDE_LOG_PATH` で指定できます。
+起動後、 `http://127.0.0.1:8000` にアクセスすると、完全な機能を使用できます。
 
 ## 🤝 貢献
 
-このプロジェクトを改善するためのIssueやPull Requestを歓迎します！
+IssueやPull Requestを歓迎します！新しいアイデアやバグを見つけた場合は、お気軽にお知らせください。
+
+1.  このリポジトリをフォークする
+2.  機能ブランチを作成する (`git checkout -b feature/AmazingFeature`)
+3.  変更をコミットする (`git commit -m 'Add some AmazingFeature'`)
+4.  ブランチにプッシュする (`git push origin feature/AmazingFeature`)
+5.  Pull Requestを作成する
+
+## 📄 ライセンス
+
+このプロジェクトは [MIT License](LICENSE) の下で公開されています。
+
+---
+
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/CasterWx">CasterWx</a>
+</p>

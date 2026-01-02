@@ -31,9 +31,9 @@
 | 功能 | 描述 | 预览 |
 | :--- | :--- | :--- |
 | **📊 数据仪表盘** | 宏观视角查看 Token 消耗、会话频次、常用模型、活动频率等关键指标。 | <img src="./img/feature_dashboard.png" width="400" alt="Dashboard"/> |
-| **👀 项目级会话明细** | 从项目维度洞察会话明细，包括 Token 消耗，每次会话的模型、轮次、Token 消耗、AI 代码留存率、变更文件等。 | <img src="./img/feature_project.png" width="400" alt="Chat UI"/> |
+| **🚀 项目级会话明细** | 从项目维度洞察会话明细，包括 Token 消耗，每次会话的模型、轮次、Token 消耗、AI 代码留存率、变更文件等。 | <img src="./img/feature_project.png" width="400" alt="Chat UI"/> |
 | **👀 会话变更文件明细** | 每次会话修改变更了哪些文件，辅助回顾变更历史。 | <img src="./img/feature_file_change.png" width="400" alt="Chat UI"/> |
-| **👀 代码留存率分析** | 分析 AI 生成代码在项目中的实际留存情况，评估 AI 贡献度。 | <img src="./img/feature_code_survival.png" width="400" alt="Chat UI"/> |
+| **🧐 代码留存率分析** | 分析 AI 生成代码在项目中的实际留存情况，评估 AI 贡献度。 | <img src="./img/feature_code_survival.png" width="400" alt="Chat UI"/> |
 | **🔍 全文检索** | 基于关键词快速定位历史会话，支持模糊搜索，不再丢失任何灵感。 | <img src="./img/feature_search.png" width="400" alt="Search"/> |
 | **📂 会话历史解析还原** | 对每次会话明细做了最大程度上的渲染还原，不同于其他工具的粗暴展示。 | <img src="./img/feature_chat.png" width="400" alt="Chat"/> |
 | **🌍 多语言支持** | 内置中、英、日三种语言界面，一键切换。 | <img src="./img/feature_i18n.png" width="400" alt="Internationalization"/> |

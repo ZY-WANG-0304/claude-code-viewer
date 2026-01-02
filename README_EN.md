@@ -1,132 +1,100 @@
 <div align="center">
-    <img src="./img/logo.png" alt="Claude Code Viewer Logo"/>
+    <img src="./img/logo.png" alt="Claude Code Viewer Logo" />
 </div>
 
 
-<p align="center">
-    <p>Claude Code Viewer is a tool for viewing, analyzing, and managing Claude Code interaction logs locally. It provides a modern Web interface to help developers review conversation history with Claude, analyze Token usage, and categorize sessions.</p>
-</p>
+<div align="center">
+    <strong>A Local Visualizer and Analyzer for Claude Code Interaction Logs</strong>
+</div>
+
+<br/>
 
 <p align="center">
     <a href="./README.md">简体中文</a> | <a href="./README_EN.md">English</a> | <a href="./README_JP.md">日本語</a>
 </p>
 
 <p align="center">
-    <!-- <a href="https://github.com/CasterWx/claude-code-viewer/actions/workflows/release.yml"><img src="https://github.com/CasterWx/claude-code-viewer/actions/workflows/release.yml/badge.svg" alt="Release"/></a> -->
-    <a href="https://github.com/CasterWx/claude-code-viewer/stargazers"><img src="https://img.shields.io/github/stars/CasterWx/claude-code-viewer?style=social" alt="GitHub stars"/></a>
-    <a href="https://github.com/CasterWx/claude-code-viewer/blob/main/LICENSE"><img src="https://img.shields.io/github/license/CasterWx/claude-code-viewer" alt="License"/></a>
-    <a href="https://CasterWx.github.io/spec-kit/"><img src="https://img.shields.io/badge/docs-GitHub_Pages-blue" alt="Documentation"/></a>
+    <a href="LICENSE"><img src="https://img.shields.io/github/license/CasterWx/claude-code-viewer?style=flat-square" alt="License"></a>
+    <a href="https://github.com/CasterWx/claude-code-viewer/stargazers"><img src="https://img.shields.io/github/stars/CasterWx/claude-code-viewer?style=flat-square" alt="Stars"></a>
+    <a href="https://github.com/CasterWx/claude-code-viewer/issues"><img src="https://img.shields.io/github/issues/CasterWx/claude-code-viewer?style=flat-square" alt="Issues"></a>
+    <img src="https://img.shields.io/badge/python-3.8+-blue?style=flat-square" alt="Python">
+    <img src="https://img.shields.io/badge/react-19-blue?style=flat-square" alt="React">
 </p>
 
+<br/>
+
+## 📖 Introduction
+
+**Claude Code Viewer** is a local tool designed explicitly for developers to help view, analyze, and manage interaction history with Claude Code. Through a modern Web interface, it solves the problem of unintuitive raw log files and difficult retrieval, making your AI pair programming process transparent and traceable.
 
 ## ✨ Features
 
-- **👀 Visual Log Viewing**: Reconstructs Claude Code interactions as a chat interface, supporting Markdown rendering, code highlighting, and tool call display.
-- **📂 Multi-Project/Session Management**: Automatically scans log directories and organizes log files by project and session.
-- **🔍 Full-Text Search**: Quickly search historical conversation content to locate key information.
-- **📊 Data Dashboard**: Overview of project statistics, Token consumption trends, etc.
-- **🏷️ Tag Management**: Supports adding custom tags to sessions for classification and filtering.
-- **⚙️ Flexible Configuration**: Supports custom log scan paths.
-- **📦 All-in-One Deployment**: Supports packaging frontend resources into the Python package, eliminating the need to run a separate frontend service.
-
-
-<div align="center">
-    <img src="./img/chat_message_p1.png" alt="Chat Message" width="70%"/>
-</div>
+| Feature | Description | Preview |
+| :--- | :--- | :--- |
+| **📊 Data Dashboard** | Macro view of key metrics including Token consumption, session frequency, top models, and activity rhythm. | <img src="./img/feature_dashboard.png" width="400" alt="Dashboard"/> |
+| **🚀 Project-level Session Details** | Insight into session details at the project level, including Token consumption, model usage, turns, AI code survival rate, and file changes per session. | <img src="./img/feature_project.png" width="400" alt="Chat UI"/> |
+| **👀 Session File Change Details** | Detailed view of which files were modified in each session to assist in reviewing change history. | <img src="./img/feature_file_change.png" width="400" alt="Chat UI"/> |
+| **🧐 Code Survival Analysis** | Analyze the actual survival rate of AI-generated code within the project to evaluate AI contribution. | <img src="./img/feature_code_survival.png" width="400" alt="Chat UI"/> |
+| **🔍 Full-Text Search** | Quickly locate historical sessions based on keywords with fuzzy search support, ensuring no inspiration is lost. | <img src="./img/feature_search.png" width="400" alt="Search"/> |
+| **📂 Session History Parsing & Restoration** | High-fidelity rendering and restoration of each session detail, providing a superior experience compared to raw log viewing. | <img src="./img/feature_chat.png" width="400" alt="Chat"/> |
+| **🌍 Multi-language Support** | Built-in Chinese, English, and Japanese interfaces, switchable with one click. | <img src="./img/feature_i18n.png" width="400" alt="Internationalization"/> |
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Python 3.8+, FastAPI, Uvicorn, Click
-- **Frontend**: React 19, TypeScript, Vite, Tailwind CSS, Recharts
+*   **Backend**: Python 3.8+, FastAPI, Uvicorn
+*   **Frontend**: React 19, TypeScript, Vite, Tailwind CSS
+*   **Visualization**: Recharts, Lucide React
 
-## 🚀 Installation & Running
+## 🚀 Getting Started
 
-### Method 1: All-in-One Installation (Recommended)
+We provide multiple installation methods, with the All-in-One package being recommended.
 
-You can package the frontend build results into the Python package, so you only need to start one service.
-
-1. **Build and Install**
-
-   We provide a build script that automatically builds frontend resources and packages the Python package:
-
-   ```bash
-   # Run build script
-   python build_package.py
-   
-   # Install the built package (in dist/ directory)
-   pip install dist/claude_viewer-0.1.0-py3-none-any.whl
-   # Or install directly from the current directory
-   pip install .
-   ```
-
-2. **Start Service**
-
-   ```bash
-   claude-viewer serve
-   ```
-
-   Visit `http://127.0.0.1:8000` to use the full functionality directly (no need to start frontend separately).
-
-### Method 2: Development Mode
-
-If you need to modify the code, you can start the backend and frontend separately.
-
-#### 1. Backend Service
-
-The backend is responsible for parsing log files and providing API interfaces.
+### Method 1: Source Installation (Recommended)
 
 ```bash
-# 1. Install Python dependencies in the project root directory
-pip install -e .
+# 1. Clone repository
+git clone https://github.com/CasterWx/claude-code-viewer.git
+cd claude-code-viewer
 
-# 2. Start backend service
-claude-viewer serve --host 127.0.0.1 --port 8000
+# 2. Build and Install (Automatically handles frontend build and Python package installation)
+python install_package.py
+
+# 3. Start Service
+claude-viewer serve
 ```
 
-After the service starts, the API will run at `http://127.0.0.1:8000`.
+After starting, access `http://127.0.0.1:8000` to use the full functionality.
 
-#### 2. Frontend Interface
-
-The frontend provides the user interaction interface.
+### Method 2: Wheel Package Installation
 
 ```bash
-# 1. Enter frontend directory
-cd frontend
+# 1. Download the wheel package
 
-# 2. Install dependencies
-npm install
+# 2. Install the package
+pip install claude_viewer-0.1.0-py3-none-any.whl
 
-# 3. Start development server
-npm run dev
+# 3. Start Service
+claude-viewer serve
 ```
 
-After starting, visit the address shown in the terminal (usually `http://localhost:5173`) to use it.
+After starting, access `http://127.0.0.1:8000` to use the full functionality.
 
-## 📁 Directory Structure
+## 🤝 Contributing
 
-```
-claude-code-viewer/
-├── claude_viewer/      # Python backend source code
-│   ├── main.py         # CLI entry point
-│   ├── server.py       # FastAPI service
-│   ├── parser.py       # Log parsing logic
-│   ├── static/         # Frontend build artifacts (generated after build)
-│   └── ...
-├── frontend/           # React frontend source code
-│   ├── src/
-│   │   ├── components/ # UI components
-│   │   ├── api.ts      # API client
-│   │   └── ...
-│   └── ...
-├── pyproject.toml      # Python project configuration
-├── build_package.py    # Build script
-└── README.md           # Project documentation
-```
+We welcome Issues and Pull Requests! If you have new ideas or find bugs, please let us know.
 
-## 📝 Configuration
+1.  Fork this repository
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
 
-By default, the tool attempts to automatically scan common Claude Code log paths. If you need to specify a specific path, you can configure it on the settings page or specify it via the environment variable `CLAUDE_LOG_PATH`.
+## 📄 License
 
-## 🤝 Contribution
+This project is open-sourced under the [MIT License](LICENSE).
 
-Issues and Pull Requests are welcome to improve this project!
+---
+
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/CasterWx">CasterWx</a>
+</p>
