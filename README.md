@@ -48,6 +48,10 @@
 
 我们提供了多种安装方式，推荐使用一体化安装包。
 
+> 写在最前，记得在 ~/.claude/settings.json 中配置 Claude Code 的日志清理时间，否则会出现日志被清理的情况。
+
+> { "cleanupPeriodDays": 99999 }
+
 ### 方式一：源码安装 (推荐)
 
 ```bash
