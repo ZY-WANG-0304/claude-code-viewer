@@ -3,12 +3,16 @@ import shutil
 import subprocess
 from pathlib import Path
 import sys
+import platform
 
 def install():
     # Get project root
     root_dir = Path(__file__).parent.absolute()
     frontend_dir = root_dir / "frontend"
-    
+
+    # Windows needs shell=True for npm.cmd, Unix systems don't
+    use_shell = platform.system() == "Windows"
+
     print(f"Project root: {root_dir}")
     
     # 1. Build frontend
@@ -21,11 +25,11 @@ def install():
         # Install dependencies if node_modules doesn't exist
         if not (frontend_dir / "node_modules").exists():
             print("Installing frontend dependencies...")
-            subprocess.run(["npm", "install"], cwd=frontend_dir, check=True)
-            
+            subprocess.run(["npm", "install"], cwd=frontend_dir, check=True, shell=use_shell)
+
         # Build
         print("Running npm build...")
-        subprocess.run(["npm", "run", "build"], cwd=frontend_dir, check=True)
+        subprocess.run(["npm", "run", "build"], cwd=frontend_dir, check=True, shell=use_shell)
     except subprocess.CalledProcessError as e:
         print(f"Error building frontend: {e}")
         sys.exit(1)
