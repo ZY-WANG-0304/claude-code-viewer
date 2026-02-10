@@ -47,7 +47,13 @@ const ImagePreview: React.FC<{ src: string; alt: string; index: number }> = ({ s
 };
 
 // Shared img component for ReactMarkdown with size tag
-const MarkdownImage: React.FC<any> = (props) => {
+interface MarkdownImageProps {
+    src?: string;
+    alt?: string;
+    [key: string]: unknown;
+}
+
+const MarkdownImage: React.FC<MarkdownImageProps> = (props) => {
     const { src, alt, ...rest } = props;
     const imageSrc = typeof src === 'string' ? src : '';
     const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);

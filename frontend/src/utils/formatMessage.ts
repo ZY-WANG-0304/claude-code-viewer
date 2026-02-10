@@ -1,3 +1,14 @@
+interface ImageSource {
+    type: string;
+    data: string;
+    media_type?: string;
+}
+
+interface ImageItem {
+    type: string;
+    source?: ImageSource;
+}
+
 export const formatMessageContent = (content: string): string => {
     if (!content) return "";
 
@@ -111,11 +122,11 @@ export const formatMessageContent = (content: string): string => {
                 const items = isArray ? parsed : [parsed];
                 
                 // Check if any item is an image
-                const hasImage = items.some((item: any) => 
-                    item && typeof item === 'object' && 
-                    item.type === 'image' && 
-                    item.source && 
-                    item.source.type === 'base64' && 
+                const hasImage = items.some((item: ImageItem) =>
+                    item && typeof item === 'object' &&
+                    item.type === 'image' &&
+                    item.source &&
+                    item.source.type === 'base64' &&
                     item.source.data
                 );
                 
@@ -124,7 +135,7 @@ export const formatMessageContent = (content: string): string => {
                     let result = '\n**📤 Output**\n\n';
                     
                     // Add image markers (will be replaced by React components)
-                    items.forEach((item: any, index: number) => {
+                    items.forEach((item: ImageItem, index: number) => {
                         if (item && item.type === 'image' && item.source?.type === 'base64' && item.source?.data) {
                             let base64Data = String(item.source.data).trim();
                             
